@@ -12,10 +12,14 @@ class Search
 
   def search_dictionary(searchkey)
     if $hashtable.key?(searchkey)==true
-      print "Definition of #{searchkey} is :  "
-      print $hashtable.fetch(searchkey, "Data inot found")
+      puts "\n ||-------------------------------- || "
+      puts "\n    #{searchkey} is : #{$hashtable.fetch(searchkey, 'No data')}  "
+      puts "\n ||---------------------------------|| "
+
     else
-      puts "Data not available"
+      puts "\n ||------------------- || "
+      puts "\n || No Data Available  || "
+      puts "\n ||------------------- || "
     end
 
   end

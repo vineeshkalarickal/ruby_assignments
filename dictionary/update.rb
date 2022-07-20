@@ -1,10 +1,12 @@
 $LOAD_PATH << '.'
 require 'dictionary'
+require 'csv'
 
 class Update
   def initialize(word,definiton)
     @word = word
     @definiton = definiton
+    @dictionary = 'dictionary.csv'
   end
 
   def get_word
@@ -21,10 +23,14 @@ class Update
 
     if $hashtable.key?(word)==true
       $hashtable[word] = definiton
-      puts "\n Definition updated "
+      puts "\n ||------------------- || "
+      puts "\n || Data Updated       || "
+      puts "\n ||------------------- || "
       self.list
     else
-      puts "The word not found in the dictionary"
+      puts "\n ||------------------- || "
+      puts "\n || Data not found     || "
+      puts "\n ||------------------- || "
     end
    puts
   end

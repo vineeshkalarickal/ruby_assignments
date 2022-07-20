@@ -47,7 +47,11 @@ class Index
             puts "Do you want to exit? Y/N "
             choice = gets.chomp.upcase
             if choice == "Y"
-              at_exit { puts "Thank you" }
+              at_exit {
+                puts "\n ||------------------- || "
+                puts "\n || See you, Thank you || "
+                puts "\n ||------------------- || "
+              }
             else
               self.getmode
             end
