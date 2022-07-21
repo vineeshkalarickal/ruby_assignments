@@ -4,6 +4,7 @@ require 'dictionary'
 class Delete
   def initialize(word)
     @word = word
+    @dictionary = 'dictionary.csv'
   end
 
   def get_word
@@ -14,10 +15,18 @@ class Delete
     word = self.get_word
     if $hashtable.key?(word)==true
       $hashtable.delete(word)
-      puts "\n Word removed "
-      self.list
+      File.open(@dictionary, 'w+') do |fo|
+        $hashtable.each do |word , definiton|
+            fo.print "#{word},#{definiton} \n"
+        end
+      end
+      puts "\n ||------------------- || "
+      puts "\n || Data Deleted       || "
+      puts "\n ||------------------- || "
     else
-      puts "The word not found in the dictionary"
+      puts "\n ||------------------- || "
+      puts "\n || Data not found     || "
+      puts "\n ||------------------- || "
     end
    puts
   end

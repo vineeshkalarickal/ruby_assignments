@@ -29,22 +29,10 @@ class Add
       f = File.new(@dictionary, "a")
       f.puts "#{word},#{definiton}"
       f.close
-      puts "\n ||------------------- || "
-      puts "\n || New Word Added     || "
-      puts "\n ||------------------- || "
+      puts "\n ||---------------------------|| "
+      puts "\n || New Word Added: #{word}   || "
+      puts "\n ||-------------------------- || "
       puts
-      self.list
-      puts
-    end
-
-
-  end
-
-  def list
-    word = self.get_word
-    definiton = self.get_definiton
-    $hashtable.each do |word , definiton|
-      puts word + ' = ' + definiton
     end
   end
 end

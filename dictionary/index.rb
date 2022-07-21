@@ -16,7 +16,7 @@ class Index
               inputword = gets.chomp
 
               search = Search.new(inputword)
-              key = search.get_keyword
+              key = search.get_keyword.downcase
               search.search_dictionary(key)
 
           when 2

@@ -29,7 +29,7 @@ class Update
 
       File.open(@dictionary, 'w+') do |fo|
         $hashtable.each do |word , definiton|
-            fo.print "#{word}, #{definiton} \n"
+            fo.print "#{word},#{definiton} \n"
         end
       end
 
