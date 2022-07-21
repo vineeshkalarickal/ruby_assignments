@@ -21,7 +21,7 @@ class Index
 
           when 2
               puts "Enter the word to be added: "
-              word_input = gets.chomp
+              word_input = gets.chomp.downcase
               puts "Enter the definiton to be added: "
               word_definition = gets.chomp
 
@@ -29,7 +29,7 @@ class Index
               key = add.addWord
           when 3
             puts "Enter the word to be updated: "
-            word_input = gets.chomp
+            word_input = gets.chomp.downcase
             puts "Enter the definiton to be updated: "
             word_definition = gets.chomp
 
@@ -38,7 +38,7 @@ class Index
 
           when 4
             puts "Enter the word to be deleted: "
-            word_input = gets.chomp
+            word_input = gets.chomp.downcase
 
             del = Delete.new(word_input)
             key = del.delete_word
