@@ -95,7 +95,7 @@ Set Operations:
 
 Set A : [1,2,3,4]
 
-Set B: [1,2,3,4}
+Set B: [1,2,3,4]
 
 A U B :
 
