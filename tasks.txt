@@ -68,18 +68,14 @@ Various output formats: "%B %-d, %Y" # "October 2, 2012"
 "%m/%d/%Y %I %p"#
 
 
-
 Enter the date : 29, Sep, 2021, Enter the type : IST
 
 Output: 29/09/2021
 
 
-
 Enter the date : 29, Sep, 2021, Enter the type : PST
 
 Output: 09/29/2021
-
-
 
 
 Enter the date : 29, Sep, 2021, Enter the type : ORT
