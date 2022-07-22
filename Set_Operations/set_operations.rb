@@ -35,25 +35,6 @@ class SetOperations
         puts result
         
     end
-
-        # puts "Cartesian Product Output :"
-        # i = 0
-        # while i < $setA.length()
-        #     j = 0
-        #     while j < $setB.length()
-        #         if(i == 0 && j == 0)
-        #             print "{{ #{$setA[i]} , #{$setB[j] } } ,"
-        #         elsif(i == $setA.length()-1 && j == $setB.length()-1)
-        #             print "{ #{$setA[i]} , #{$setB[j] } } }"
-        #         else
-        #             print "{ #{$setA[i]} , #{$setB[j] } } ,"
-        #         end
-        #         j = j + 1
-        #     end
-        #     print "\n"
-        #     i = i + 1
-        # end
-
 end
 
 
