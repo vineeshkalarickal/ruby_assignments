@@ -32,8 +32,7 @@ class SetOperations
                 result.add("(#{valueA} , #{valueB})")
             end        
         end
-        puts result
-        
+        return result        
     end
 end
 
@@ -52,4 +51,4 @@ puts "\n--compliment--"
 print cls.compliment
 
 puts "\n--Cartesian--"
-cls.cartesian
+print cls.cartesian
