@@ -37,76 +37,42 @@ b) Write the replaced output to a new file
 
 5. Write a Class for date operations, the input can be date of format Date Type or else string, also conversion type.
 
-
-
 Example :
-
-
-
 Input : it should accept string type, date type, date time etc
 
-Various output formats: "%B %-d, %Y" # "October 2, 2012"
-
+Various output formats: 
+"%B %-d, %Y" # "October 2, 2012"
 "%B %-d, %Y %Z" # "October 2, 2012 PDT"
-
 "%Y%m%d" # "20121002"
-
 "%Y%m%d%H%M%S" # "20121002115124"
-
 "%m/%d/%Y" # "10/02/2012"
-
 "%m/%d/%y" # "10/02/12"
-
 "%d/%m/%Y" # "21/08/2012"
-
 "%Y-%m-%d %H:%M:%S %z" # "2012-10-02 11:51:04 -0700"
-
 "%Y-%m-%d %H:%M:%S %Z" # "2012-10-02 11:51:04 PDT"
-
 "%Y/%m/%d %I:%M:%S %p"# "2012/10/02 10:18:34 PM"
-
 "%m/%d/%Y %I %p"#
 
-
 Enter the date : 29, Sep, 2021, Enter the type : IST
-
 Output: 29/09/2021
 
-
 Enter the date : 29, Sep, 2021, Enter the type : PST
-
 Output: 09/29/2021
-
 
 Enter the date : 29, Sep, 2021, Enter the type : ORT
 
 Output: 2012-10-02 11:51:04 -0700
 
-
-
 Default type should be PST
-
-
 -----------------
 
 Set Operations:
-
-
-
 Set A : [1,2,3,4]
-
 Set B: [1,2,3,4]
-
 A U B :
-
 A N B :
-
 A Compliment :
-
 cartesian Product:
-
 Commutative Law  :
-
 Associative Law :
-
 De Morgan's Law :
