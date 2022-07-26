@@ -41,3 +41,6 @@ end
 
 cls = DateOperations.new
 cls.get_user_inputs
+
+
+#file naming conventions
