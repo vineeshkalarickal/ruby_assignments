@@ -43,3 +43,10 @@ class ConvertNumToWords
         file_to_write.puts(cnw.convertToWords(line.to_i))
       end
     end
+
+
+
+
+#filr naming conventions needs to be followed.
+#indentation is missing in few places
+
