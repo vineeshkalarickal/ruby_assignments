@@ -25,3 +25,8 @@ module BillCalculator
         return @totAmount
     end
 end
+
+
+#Logic is good, 
+#return in the end is not required
+#overall looks good
