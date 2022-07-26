@@ -52,3 +52,7 @@ print cls.compliment
 
 puts "\n--Cartesian--"
 print cls.cartesian
+
+
+#return in the end is not required
+#looks good
