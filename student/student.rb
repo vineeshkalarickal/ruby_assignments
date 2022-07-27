@@ -1,14 +1,15 @@
 require 'csv'
+require './calculate_total_marks'
 class Student
   attr_accessor :roll_num, :stud_name, :mark1, :mark2, :mark3, :total_mark, :file_name
   $file_name = 'student_data.csv'
-
+  include CalculateTotalMarks
   def display_stud_details(roll_num)
     csv = CSV.read($file_name, :headers => true)
     csv.find do |row|
       if row['ROLL_NUM'] == roll_num
-        total_mark = self.calculate_total(row['MARK1'], row['MARK2'], row['MARK3'])
-        puts "\n -------Student Details--------- \n "
+        total_mark = row['MARK']
+        puts '-------Student Details---------'
         puts "Name: #{row['STUD_NAME'].upcase}"
         puts "Roll Number: #{row['ROLL_NUM'].upcase}"
         puts "Total Mark Scored: #{total_mark}"
@@ -17,8 +18,14 @@ class Student
     end
   end
 
-  def calculate_total(mark1, mark2, mark3)
-    mark1.to_i + mark2.to_i + mark3.to_i
+  def set_marks(number_of_subjects)
+    marks = []
+    for i in 0..(number_of_subjects-1) do
+      puts "Enter the mark of Subject #{i+1}: "
+      marks[i] = gets.to_i
+    end
+
+    total = my_sum(marks)
   end
 
   def set_stud_details(stud_details)
@@ -34,11 +41,9 @@ class Student
   def check_stud_details(roll_num)
     csv = CSV.read($file_name, :headers => true)
     csv.find do |row|
-      if row['ROLL_NUM'] == roll_num
-        puts "\n -------Student Details Already Exists--------- \n "
+      if row['ROLL_NUM'] == roll_num        
+        puts '-------Student Details Already Exists---------'
         return true
-      else
-        return false
       end
     end
   end

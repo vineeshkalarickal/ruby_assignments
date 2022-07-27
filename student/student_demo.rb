@@ -1,6 +1,5 @@
 $LOAD_PATH << '.'
 require 'student'
-
 class StudentDemo
   def initialize
     student = Student.new
@@ -18,17 +17,15 @@ class StudentDemo
       student.display_stud_details(roll_num)
     when 2
       puts 'Enter Roll Number: '
-      details['rollNum'] = gets.chomp.downcase
-      puts 'Enter Name: '
-      details['studName'] = gets.chomp.to_s.downcase
-      puts 'Enter 1st Subject Mark: '
-      details['mark1'] = gets.chomp.to_i
-      puts 'Enter 2nd Subject Mark: '
-      details['mark2'] = gets.chomp.to_i
-      puts 'Enter 3rd Subject Mark: '
-      details['mark3'] = gets.chomp.to_i
-      check = student.check_stud_details(details['rollNum'])
-      if check == false
+      details['roll_number'] = gets.chomp.downcase
+      check = student.check_stud_details(details['roll_number'])
+
+      unless check == true
+        puts 'Enter Name: '
+        details['student_name'] = gets.chomp.to_s.downcase
+        puts 'Enter no. of Subjects to record the Mark: '
+        no_of_subs = gets.chomp.to_i
+        details['marks'] = student.set_marks(no_of_subs)
         student.set_stud_details(details)
       end
     else
