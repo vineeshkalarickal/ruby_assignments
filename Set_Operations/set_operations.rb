@@ -1,39 +1,33 @@
-require "set"
+require 'set'
 class SetOperations
-    #union, intersection, compliment and cartesian product
-    $setA = [1,2,4,5]
-    $setB = [1,7,3,4,6]
+  $setA = [1,2,4,5]
+  $setB = [1,7,3,4,6]
 
-    def show
-        result = "Set A: #{$setA} \nSet B: #{$setB}"
-        return result
-    end
-    
-    def union
-        result = $setA | $setB
-        return result
-    end
+  def show
+    result = "Set A: #{$setA} \nSet B: #{$setB}"
+  end
 
-    def intersection
-        result = $setA & $setB
-        return result
-    end
+  def union
+    result = $setA | $setB
+  end
 
-    def compliment
-        result = $setA - $setB
-        return result
-    end
+  def intersection
+    result = $setA & $setB
+  end
 
+  def compliment
+    result = $setA - $setB
+  end
 
-    def cartesian
-        result = Set.new
-        $setA.each do |valueA|
-            $setB.each do |valueB|
-                result.add("(#{valueA} , #{valueB})")
-            end        
-        end
-        return result        
+  def cartesian
+    result = Set.new
+    $setA.each do |valueA|
+      $setB.each do |valueB|
+        result.add("(#{valueA} , #{valueB})")
+      end
     end
+    return result
+  end  
 end
 
 

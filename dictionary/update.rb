@@ -23,26 +23,21 @@ class Update
 
     dict_word = ''
     dict_definiton = ''
-
+    puts '||------------------- || '
     if $hashtable.key?(word)==true
       $hashtable[word] = definiton
 
       File.open(@dictionary, 'w+') do |fo|
         $hashtable.each do |word , definiton|
-            fo.print "#{word},#{definiton} \n"
+            fo.print "#{word}, #{definiton} \n"
         end
       end
-
-      puts "\n ||------------------- || "
-      puts "\n || Data Updated       || "
-      puts "\n ||------------------- || "
+      puts '|| Data Updated       || '
       self.list
     else
-      puts "\n ||------------------- || "
-      puts "\n || Data not found     || "
-      puts "\n ||------------------- || "
+      puts '|| Data not found     || '
     end
-   puts
+    puts '||------------------- || '
   end
 
   def list

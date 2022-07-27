@@ -17,22 +17,19 @@ class Add
     @definiton
   end
 
-  def addWord
+  def add_word
     word = self.get_word
     definiton = self.get_definiton
-
+    puts ' ||------------------- || '
     if $hashtable.key?(word)==true
-      puts "\n ||------------------- || "
-      puts "\n || Data already exist || "
-      puts "\n ||------------------- || "
+      puts ' || Data already exist || '
     else
-      f = File.new(@dictionary, "a")
-      f.puts "#{word},#{definiton}"
+      f = File.new(@dictionary, 'a')
+      f.puts "#{word}, #{definiton}"
       f.close
-      puts "\n ||---------------------------|| "
-      puts "\n || New Word Added: #{word}   || "
-      puts "\n ||-------------------------- || "
+      puts " || New Word Added: #{word}   || "
       puts
     end
+    puts ' ||------------------- || '
   end
 end

@@ -13,28 +13,25 @@ class Delete
 
   def delete_word
     word = self.get_word
+    puts '||-------------------|| '
     if $hashtable.key?(word)==true
       $hashtable.delete(word)
       File.open(@dictionary, 'w+') do |fo|
-        $hashtable.each do |word , definiton|
-            fo.print "#{word},#{definiton} \n"
+        $hashtable.each do |word, definiton|
+          fo.print "#{word}, #{definiton} \n"
         end
       end
-      puts "\n ||------------------- || "
-      puts "\n || Data Deleted       || "
-      puts "\n ||------------------- || "
+      puts '|| Data Deleted       || '
     else
-      puts "\n ||------------------- || "
-      puts "\n || Data not found     || "
-      puts "\n ||------------------- || "
+      puts '||-------------------|| '
+      puts '|| Data not found    || '
     end
-   puts
+    puts '||-------------------|| '
   end
 
   def list
-      $hashtable.each do |key, value|
-        puts " #{key} : #{value}"
-      end
+    $hashtable.each do |key, value|
+      puts " #{key} : #{value}"
+    end
   end
-
 end

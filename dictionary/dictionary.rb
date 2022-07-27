@@ -6,6 +6,6 @@ dictionary = 'dictionary.csv'
 $hashtable = Hash.new {}
 # add data to Hash
 File.open(dictionary).read.split("\n").each do |line|
-  word, definiton = line.split(",")
+  word, definiton = line.split(',')
   $hashtable[word] = definiton
 end

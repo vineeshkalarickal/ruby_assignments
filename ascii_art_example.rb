@@ -1,11 +1,3 @@
-=begin
-************
-*  $$  $$  *
-*    ||    *
-*  ######  *
-*          *
-************
-=end
 def show_hori_stars
   puts "\n\n"
     17.times {|x|  print "*"}
@@ -13,13 +5,12 @@ def show_hori_stars
 end
 
 def show_vert_stars
-    2.times{ |x|   print "   @@@" }
+  2.times{ |x|   print "   @@@" }
   puts "\n\n"
-
   i = 1
   3.times do
-  	puts ("^" * i).center(15)
-  	i += 2
+    puts ("^" * i).center(15)
+    i += 2
   end
 
   for i in 1..4
@@ -34,7 +25,6 @@ def show_vert_stars
   end
 
 end
-
 
 # calling the functions here
 show_hori_stars
