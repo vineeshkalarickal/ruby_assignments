@@ -1,3 +1,3 @@
-ROLL_NUM,STUD_NAME,MARK
-1,dddd,44,
-2,fffds,223,
+ROLL_NUM,STUD_NAME,TOTAL,MARKS
+1,vineesh,155,[55, 50, 50]
+2,ks,205,[55, 70, 80]

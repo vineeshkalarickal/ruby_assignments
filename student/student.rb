@@ -6,33 +6,42 @@ class Student
   include CalculateTotalMarks
   def display_stud_details(roll_num)
     csv = CSV.read($file_name, :headers => true)
+    puts '-------Student Details--------- '
     csv.find do |row|
-      if row['ROLL_NUM'] == roll_num
-        total_mark = row['MARK']
-        puts '-------Student Details---------'
-        puts "Name: #{row['STUD_NAME'].upcase}"
-        puts "Roll Number: #{row['ROLL_NUM'].upcase}"
-        puts "Total Mark Scored: #{total_mark}"
-        puts "\n\n"
+      if row['ROLL_NUM'] == roll_num   
+        print "Name: #{row['STUD_NAME'].upcase} \n"
+        print "Roll Number: #{row['ROLL_NUM'].upcase} \n"
+        print "Total Mark: #{row['TOTAL']} \n"
       end
     end
   end
 
   def set_marks(number_of_subjects)
-    marks = []
+    @marks = []
+    @marks_ar = []
+    total = []
     for i in 0..(number_of_subjects-1) do
       puts "Enter the mark of Subject #{i+1}: "
-      marks[i] = gets.to_i
+      @marks[i] = gets.to_i
+    end
+    @marks.each do |single|
+      @marks_ar.push single
     end
 
-    total = my_sum(marks)
+    total[0] = @marks_ar
+    total[1] = my_sum(@marks)
+    return total
   end
 
   def set_stud_details(stud_details)
     puts stud_details
     File.open($file_name, 'a+') do |fo|
       stud_details.each do |key, value|
-        fo.print "#{value},"
+        if key == 'marks'
+          fo.print "#{value[1]},#{value[0]}"
+        else
+          fo.print "#{value},"
+        end
       end
       fo.puts
     end
