@@ -25,21 +25,16 @@ class Coin_Toss
     toss = $COIN.shuffle.first
     puts "Coin shows #{toss}"
     if toss == team_a_choice
-      puts "Team A won the toss and selected to bat first"
-      @@bat_fitst = "A"
+      puts 'Team A won the toss and selected to bat first'
+      @@bat_fitst = 'A'
     else
-      puts "Team B won the toss and selected to bat first"
-      @@bat_fitst = "B"
+      puts 'Team B won the toss and selected to bat first'
+      @@bat_fitst = 'B'
     end
     @@bat_fitst
   end
 
   def get_bowling_team(team)
-    if(team == "A")
-      bowling = "B"
-    else
-      bowling = "A"
-    end
+    team == 'A' ? 'B' : 'A'
   end
 end
-

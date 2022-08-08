@@ -7,8 +7,6 @@ $TEAM_B = ['B1','B2','B3','B4','B5']
 
 $COIN = ['Heads','Tails']
 
-
-
 #TEST
 $TEST_OVERS = 5
 
