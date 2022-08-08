@@ -31,9 +31,15 @@ class Coin_Toss
       puts "Team B won the toss and selected to bat first"
       @@bat_fitst = "B"
     end
-    puts "Match Starts"
     @@bat_fitst
   end
 
+  def get_bowling_team(team)
+    if(team == "A")
+      bowling = "B"
+    else
+      bowling = "A"
+    end
+  end
 end
 

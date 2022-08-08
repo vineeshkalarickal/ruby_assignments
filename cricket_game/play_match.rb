@@ -2,14 +2,15 @@ $LOAD_PATH << '.'
 require 'config'
 require 'coin_toss'
 require 'score_card'
-
-class PlayMatch
+require 'team_details'
+class PlayMatch < TeamDetails
   include ScoreCard
   def initialize(match_format)
     @match_format = match_format
   end
   # get and set method
   attr_accessor :match_format
+ 
   def total_balls
     format = self.match_format.to_i
     case format
@@ -25,7 +26,8 @@ class PlayMatch
     return total_balls
   end
 
-  def match(team,total_balls)
+  def match(team, bowling, total_balls)
+    td = TeamDetails.new
 
     score_card = (0..9).to_a
     @total = 0
@@ -34,15 +36,9 @@ class PlayMatch
     over = 0
     wickets = 0
 
-    if(team == "A")
-      batting_team = $TEAM_A
-      bowling_team = $TEAM_B
-    else
-      batting_team = $TEAM_B
-      bowling_team = $TEAM_A
-    end
+    batting_team = td.select_batting_team(team,1)
 
-    puts " ----+ Match Starts +---- "
+    puts " ----+ Innings Starts +---- "
     players = batting_team[0..1]
 
     total_balls.times do |i|
@@ -66,8 +62,8 @@ class PlayMatch
           puts "=== New player came to bat #{players}  === " if players && players.any?
           #Abort if no players left
           if players == nil
-            self.final_scorecard(@total, over, team)
-            abort(" ===  Innings ended  === ")
+            self.final_scorecard(@total, over, bowling)
+            return @total
           end
 
         else
@@ -85,23 +81,12 @@ class PlayMatch
         end
 
         if balls == total_balls
-          self.final_scorecard(@total, over, team)
-          abort(" ===  Innings ended  === ")
+          self.final_scorecard(@total, over, bowling)
+          return @total
         end
+        
       end
     end
-    return @total
   end
 end
 
-play = PlayMatch.new "#{$MATCH_FORMAT}"
-#call for the toss
-ct = Coin_Toss.new
-team = ct.call
-total_balls = play.total_balls.to_i
-
-#play match
-score = play.match(team,total_balls)
-puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
-puts "$$$$$$$$$$$$$ #{score} $$$$$$$$$$$$$$$$"
-puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
