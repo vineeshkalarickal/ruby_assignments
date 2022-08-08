@@ -62,10 +62,10 @@ https://rspec.info/documentation/
 1) 	bundle init #will create gem File
  		- add *gem 'rspec'* to the File
 
-2) 	bundle config set --local path 'vendor/bundle'
-		~bundle install --binstubs~
+2) 	bundle config set --local path 'vendor'
+		bundle install --binstub
 
 3) 	bin/rspec --init # will create spec folder
-			spec folder is impportan as it contains all the test classes
+			spec folder is important as it contains all the test classes
 # to run the RSpec
 4) 	bundle exec rspec
