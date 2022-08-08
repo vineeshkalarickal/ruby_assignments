@@ -1,12 +1,17 @@
 $LOAD_PATH << '.'
-require 'team_details'
-
+require 'config'
 class Index
-
+  include GetTeamDetails
   def initialize
+    require 'team_details'
     require 'play_match'
     # show team list
     td = TeamDetails.new
+    # add team
+    td.add_team
+    td.add_players('first')
+    td.add_players('second')
+    self.get_team_details
     td.show_team
 
     puts ' Enter the match format: 1=> TEST 2=> ODI and 3=> T20 4=> Quit Game '
@@ -28,8 +33,7 @@ class Index
       puts 'Do you want to exit? Y/N '
       exit_choice_proc.call(gets.chomp.upcase)
     else
-      puts 'Wrong choice, Please enter numeric value '
-      self.initialize
+      puts 'Wrong choice '     
     end
 
     return unless [1, 2, 3].include? $MATCH_FORMAT
@@ -40,13 +44,30 @@ class Index
       bowling = coin_toss.get_bowling_team(batting)
 
       # play 1
-      first_innings = play.match(batting, bowling, 1)
+      first_innings = play.match(batting, bowling, 1).to_i
       # play 2
-      second_innings = play.match(bowling, batting, 2)
+      second_innings = play.match(bowling, batting, 2).to_i
 
       require 'match_details'
       match_det = MatchDetails.new
-      match_det.final_verdict(first_innings, second_innings, batting, bowling)
+
+      score_details = {
+        'first_innings' => first_innings,
+        'second_innings' => second_innings,
+        'batting' => batting,
+        'bowling' => bowling
+      }
+
+      if $MATCH_FORMAT == 1
+        # play 1
+        third_innings = play.match(batting, bowling, 3).to_i
+        # play 2
+        fourth_innings = play.match(bowling, batting, 4).to_i
+        score_details['third_innings'] = third_innings
+        score_details['fourth_innings'] = fourth_innings
+      end
+
+      match_det.final_verdict(score_details)
 
   end
 end

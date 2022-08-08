@@ -37,11 +37,14 @@ class PlayMatch < TeamDetails
     balls = 0
     over = 0
     wickets = 0
+    
+    puts "team #{team}"
 
-    batting_team = td.select_batting_team(team,1)
-    puts ' |-------------------------------------| '
+    batting_team = td.select_batting_team(team, 1)
+    
+    puts ' |--------------------------| '
     puts " |----+ Innings #{innings} Starts +----| "
-    puts ' |-------------------------------------| '
+    puts ' |--------------------------| '
     players = batting_team[0..1]
 
     total_balls = self.total_balls.to_i
@@ -62,12 +65,11 @@ class PlayMatch < TeamDetails
           batting_team.delete(a)
           puts "|----+ Players remaining are #{batting_team.count} +----| "
           players = batting_team[0..1]
-          puts '|----+  Innings ends  +----| ' if batting_team == []
-          puts "|----+ Total runs scored #{@total}  +----| " if batting_team == []
+          puts "|----+ Innings ends, Total runs scored #{@total}  +----| " if batting_team == []
           puts "|----+ New player came to bat #{players}  +----| " if players &.any?
           # Abort if no players left
-          if players == nil
-            self.final_scorecard(@total, over, bowling)
+          if players.nil?
+            self.final_scorecard(@total, over, bowling, innings)
             return @total
           end
 
@@ -75,7 +77,7 @@ class PlayMatch < TeamDetails
           puts "Hits #{ball} runs"
           @runs_in_over += ball
           @total += ball
-        end # if ends here
+        end 
 
         balls += 1
         if (balls % 6).zero?
