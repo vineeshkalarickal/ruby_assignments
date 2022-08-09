@@ -63,14 +63,13 @@ class PlayMatch < TeamDetails
           batting_team.delete(a)
           puts "|----+ Players remaining are #{batting_team.count} +----| "
           players = batting_team[0..1]
-          puts "|----+ Innings ends, Total runs scored #{@total}  +----| " if batting_team == []
-          puts "|----+ New player came to bat #{players}  +----| " if players &.any?
-          # Abort if no players left
-          if players.nil?
+          if batting_team == []
+            puts "|----+ Innings ends, Total runs scored #{@total}  +----| "
+            # Abort if no players left
             self.final_scorecard(@total, over, bowling, innings)
             return @total
           end
-
+          puts "|----+ New player came to bat #{players}  +----| " if players &.any?
         else
           puts "Hits #{ball} runs"
           @runs_in_over += ball

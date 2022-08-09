@@ -7,7 +7,7 @@ module ScoreCard
   def final_scorecard(total, over, team, innings)
     run_rate = ->(total, over) { (total.to_f/over.to_f).to_f.round(2)}
 
-    return unless innings == 1 && innings == 3
+    return unless [1, 3].include? innings
 
     puts " Team #{team} requrires Runs: #{total} in #{over} overs"
     puts " Required Run rate #{run_rate.call(total, over)} per over \n\n"

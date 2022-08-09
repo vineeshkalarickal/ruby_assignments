@@ -39,15 +39,15 @@ class Coin_Toss < TeamDetails
     puts "\n---+ Coin shows #{toss} +---"
     if toss == first_team_choice
       puts "\n---+ #{self.team1} won the toss and selected to bat first +---"
-      @bat_fitst = 'A'
+      @bat_fitst = self.team1
     else
       puts "\n---+ #{self.team2} won the toss and selected to bat first +---"
-      @bat_fitst = 'B'
+      @bat_fitst = self.team2
     end
     @bat_fitst
   end
 
   def get_bowling_team(team)
-    team == 'A' ? 'B' : 'A'
+    team == self.team1 ? self.team2 : self.team1
   end
 end
