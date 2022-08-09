@@ -1,7 +1,7 @@
 $LOAD_PATH << '.'
 require 'config'
 class Index
-  include GetTeamDetails
+
   def initialize
     require 'team_details'
     require 'play_match'
@@ -11,10 +11,9 @@ class Index
     td.add_team
     td.add_players('first')
     td.add_players('second')
-    self.get_team_details
     td.show_team
 
-    puts ' Enter the match format: 1=> TEST 2=> ODI and 3=> T20 4=> Quit Game '
+    puts 'Enter the match format: 1=> TEST 2=> ODI and 3=> T20 4=> Quit Game '
     $MATCH_FORMAT = gets.chomp.to_i
     play = PlayMatch.new $MATCH_FORMAT
 

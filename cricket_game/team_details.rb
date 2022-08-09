@@ -1,24 +1,7 @@
 $LOAD_PATH << '.'
+require 'csv'
 require 'config'
 class TeamDetails
-
-  include GetTeamDetails
-
-  def add_players(team_name)
-    puts "---+ Add #{team_name} team players +---"
-    @player_name = Hash.new
-    (1..5).each do |i|
-      puts "Add player #{i} name: "
-      @player_name[i] = gets.chomp.upcase
-    end
-
-    f = File.new('playing_eleven.rb', 'a+')
-    @players = self.hash_to_a(@player_name)
-    f.puts "#{@players}"
-    f.close
-
-  end
-
 
   def add_team
     @team_name = Hash.new
@@ -28,34 +11,78 @@ class TeamDetails
       @team_name[i] = gets.chomp.upcase
     end
 
-    f = File.new('playing_eleven.rb', 'w+')
-    @team = self.hash_to_a(@team_name)
-    f.puts "#{@team}"
+    f = File.new('team.csv', 'w+')
+    @team_name.each do |key, values|
+      f.print "#{values},"
+    end
+    f.close
+  end
+
+  def add_players(team_name)
+    puts "---+ Add #{team_name} team players +---"
+
+    if team_name == 'first'
+      file_name = 'first_eleven.csv'
+    else
+      file_name = 'second_eleven.csv'
+    end
+
+    @player_name = Hash.new
+    (1..$TOTAL_PLAYERS).each do |i|
+      puts "Add player #{i} name: "
+      @player_name[i] = gets.chomp.upcase
+    end
+
+    f = File.new(file_name, 'w+')
+    @player_name.each do |key, values|
+      f.print "#{values},"
+    end
     f.close
 
   end
 
-  def hash_to_a(a_hash)
-    result = []
-    a_hash.each { |k, v|
-      if v.is_a?(Hash)
-        result << v.to_a
-      else
-        result << v
-      end
-    }
-    result
+  def get_team_details
+    @teams = nil
+    f = File.open("team.csv", "r+") if File.exist?("team.csv")
+      lines = f.readlines
+      @teams = lines[0].split(',')
+    f.close
+    return @teams
+  end
+  
+  def get_playing_eleven(team_name)
+    @playing_eleven = nil
+    if team_name == 'first'
+      file_name = 'first_eleven.csv'
+    else
+      file_name = 'second_eleven.csv'
+    end
+
+    f = File.open(file_name, "r+") if File.exist?(file_name)
+      lines = f.readlines
+      @playing_eleven = lines[0].split(',')
+    f.close
+    return @playing_eleven
   end
 
+
   def show_team
-    #puts "#{$TEAMS[0]}: "
+    @teams = self.get_team_details
+    puts "#{@teams[0]} vs #{@teams[1]}"
+
+    @first_team = self.get_playing_eleven('first')
+    @second_team = self.get_playing_eleven('second')
+
     puts "#{@first_team.join(",")} \n\n "
     sleep 1
-    #puts "#{$TEAMS[1]}: "
     puts "#{@second_team.join(",")} \n\n "
   end
 
   def select_batting_team(team, innings)
+
+    @first_team = self.get_playing_eleven('first')
+    @second_team = self.get_playing_eleven('second')
+
     if team == "A"
       batting_team = @first_team
       bowling_team = @second_team

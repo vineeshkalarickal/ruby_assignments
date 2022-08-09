@@ -31,14 +31,12 @@ class PlayMatch < TeamDetails
   def match(team, bowling, innings)
     td = TeamDetails.new
 
-    score_card = (0..9).to_a
+    score_runs = (0..9).to_a
     @total = 0
     @runs_in_over = 0
     balls = 0
     over = 0
     wickets = 0
-    
-    puts "team #{team}"
 
     batting_team = td.select_batting_team(team, 1)
     
@@ -52,7 +50,7 @@ class PlayMatch < TeamDetails
     total_balls.times do |i|
       players.each do |a|
 
-        ball = score_card.shuffle.first
+        ball = score_runs.shuffle.first
 
         self.show_over_details(balls)
 
