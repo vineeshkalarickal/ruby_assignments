@@ -1,5 +1,5 @@
 $COIN = ['Heads','Tails']
-
+$OUT = ['Bowled','Run out', 'Stumping', 'Catch out']
 # TEST
 $TEST_OVERS = 5
 

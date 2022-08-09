@@ -11,9 +11,8 @@ class Coin_Toss < TeamDetails
     @team2 =  @teams[1]
   end
 
-    # get and set method
-    attr_accessor :team1, :team2
-
+  # get and set method
+  attr_accessor :team1, :team2
 
   def select_choice
     puts "------+ TOSS +-------"

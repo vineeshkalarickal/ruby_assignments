@@ -39,11 +39,12 @@ class PlayMatch < TeamDetails
     wickets = 0
 
     batting_team = td.select_batting_team(team, 1)
-    
+
     puts ' |--------------------------| '
     puts " |----+ Innings #{innings} Starts +----| "
     puts ' |--------------------------| '
     players = batting_team[0..1]
+
 
     total_balls = self.total_balls.to_i
 
@@ -58,7 +59,7 @@ class PlayMatch < TeamDetails
         if [5, 7, 8, 9].include? ball
           puts ' Dot ball '
         elsif ball.zero?
-          puts "#{a} gets out"
+          puts "#{a} gets out by #{$OUT.shuffle.first}"
           wickets += 1
           batting_team.delete(a)
           puts "|----+ Players remaining are #{batting_team.count} +----| "
@@ -71,7 +72,7 @@ class PlayMatch < TeamDetails
           end
           puts "|----+ New player came to bat #{players}  +----| " if players &.any?
         else
-          puts "Hits #{ball} runs"
+          puts "#{a} Hits #{ball} runs"
           @runs_in_over += ball
           @total += ball
         end 

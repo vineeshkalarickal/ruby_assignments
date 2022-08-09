@@ -3,6 +3,17 @@ require 'csv'
 require 'config'
 class TeamDetails
 
+  def initialize
+    @teams = self.get_team_details
+    @first_team = self.get_playing_eleven('first')
+    @second_team = self.get_playing_eleven('second')
+    @team1 =  @teams[0]
+    @team2 =  @teams[1]
+  end
+
+  # get and set method
+  attr_accessor :team1, :team2, :first_team, :second_team
+
   def add_team
     @team_name = Hash.new
     (0..1).each do |i|
@@ -67,23 +78,28 @@ class TeamDetails
 
 
   def show_team
-    @teams = self.get_team_details
-    puts "#{@teams[0]} vs #{@teams[1]}"
 
+    @teams = self.get_team_details
     @first_team = self.get_playing_eleven('first')
     @second_team = self.get_playing_eleven('second')
+    @team1 =  @teams[0]
+    @team2 =  @teams[1]
 
-    puts "#{@first_team.join(",")} \n\n "
+    puts "#{@team1} vs #{@team2} \n\n"
+    puts "#{@team1} : #{@first_team.join(",")} \n\n "
     sleep 1
-    puts "#{@second_team.join(",")} \n\n "
+    puts "#{@team2}: #{@second_team.join(",")} \n\n "
   end
 
   def select_batting_team(team, innings)
 
+    @teams = self.get_team_details
     @first_team = self.get_playing_eleven('first')
     @second_team = self.get_playing_eleven('second')
+    @team1 =  @teams[0]
+    @team2 =  @teams[1]
 
-    if team == "A"
+    if team == @team1
       batting_team = @first_team
       bowling_team = @second_team
     else
