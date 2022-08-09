@@ -24,6 +24,8 @@ class Index
     case $MATCH_FORMAT
     when 1
       puts 'You have selected the TEST Match '
+      puts ' Need to implement, choose anothe option for now '
+      self.initialize
     when 2
       puts 'You have selected the ODI Match '
     when 3
