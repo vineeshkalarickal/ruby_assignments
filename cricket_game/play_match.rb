@@ -7,30 +7,8 @@ class PlayMatch < TeamDetails
 
   include ScoreCard
 
-  def initialize(match_format)
-    @match_format = match_format
-  end
-  # get and set method
-  attr_accessor :match_format
- 
-  def total_balls
-    format = self.match_format.to_i
-    case format
-    when 1
-      total_balls = $TEST_OVERS*6
-    when 2
-      total_balls = $ODI_OVERS*6
-    when 3
-      total_balls = $T20_OVERS*6
-    else
-      total_balls = 0
-    end
-    return total_balls
-  end
-
   def match(team, bowling, innings)
-    td = TeamDetails.new
-
+    md = MatchDetails.new $MATCH_FORMAT
     score_runs = (0..9).to_a
     @total = 0
     @runs_in_over = 0
@@ -38,53 +16,56 @@ class PlayMatch < TeamDetails
     over = 0
     wickets = 0
 
-    batting_team = td.select_batting_team(team, 1)
-
     puts ' |--------------------------| '
     puts " |----+ Innings #{innings} Starts +----| "
     puts ' |--------------------------| '
+
+    batting_team = self.select_batting_team(team, 1)
     players = batting_team[0..1]
 
+    total_balls = md.total_balls.to_i
 
-    total_balls = self.total_balls.to_i
-
+    flag = 0
     total_balls.times do |i|
       players.each do |a|
-
+        if flag == 1
+          flag = 0
+          next
+        end
         ball = score_runs.shuffle.first
-
         self.show_over_details(balls)
-
         # checking the conditions
         if [5, 7, 8, 9].include? ball
-          puts ' Dot ball '
+          puts a +' on strike: Hits No Run '
+          flag = 1
         elsif ball.zero?
           puts "#{a} gets out by #{$OUT.shuffle.first}"
           wickets += 1
           batting_team.delete(a)
-          puts "|----+ Players remaining are #{batting_team.count} +----| "
           players = batting_team[0..1]
-          if batting_team == []
-            puts "|----+ Innings ends, Total runs scored #{@total}  +----| "
+          unless batting_team.count != 1 ||  batting_team == []
+            puts "|----+ #{team} All out!!, Total runs scored #{@total}  +----| "
             # Abort if no players left
             self.final_scorecard(@total, over, bowling, innings)
             return @total
           end
-          puts "|----+ New player came to bat #{players}  +----| " if players &.any?
+          puts "|----+ Remaining players #{players}  +----| " if players &.any?
         else
-          puts "#{a} Hits #{ball} runs"
+          puts "#{a}  on strike: Hits #{ball} runs"
+          if [2, 4, 6].include? ball
+            flag = 1
+          end
           @runs_in_over += ball
           @total += ball
-        end 
-
+        end
         balls += 1
         if (balls % 6).zero?
-          over += 1
+          over += 1          
           self.show_scorecard(@total, over, wickets)
           @runs_in_over = 0
           sleep 1
+          flag = 0
         end
-
         if balls == total_balls
           self.final_scorecard(@total, over, bowling, innings)
           return @total

@@ -4,13 +4,13 @@ $OUT = ['Bowled','Run out', 'Stumping', 'Catch out']
 $TEST_OVERS = 5
 
 # ODI
-$ODI_OVERS = 3
+$ODI_OVERS = 2
 
 # T20
 $T20_OVERS = 2
 
 # TOTAL_PLAYERS in each team
-$TOTAL_PLAYERS = 2
+$TOTAL_PLAYERS = 3
 
 # start_details
 module GetTeamDetails

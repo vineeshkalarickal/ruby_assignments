@@ -1,7 +1,8 @@
 $LOAD_PATH << '.'
 require 'csv'
 require 'config'
-class TeamDetails
+require 'match_details'
+class TeamDetails < MatchDetails
 
   def initialize
     @teams = self.get_team_details
@@ -84,7 +85,7 @@ class TeamDetails
     @second_team = self.get_playing_eleven('second')
     @team1 =  @teams[0]
     @team2 =  @teams[1]
-
+    puts "\n\n"
     puts "#{@team1} vs #{@team2} \n\n"
     puts "#{@team1} : #{@first_team.join(",")} \n\n "
     sleep 1

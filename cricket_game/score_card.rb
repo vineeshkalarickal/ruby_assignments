@@ -23,7 +23,7 @@ module ScoreCard
         balls_left = 0
       end
 
-      print " ----+ #{tot_overs}.#{balls_left} +---- "
+      puts " ----+ #{tot_overs}.#{balls_left} +---- "
     }
     ball_proc.call(balls)
   end
