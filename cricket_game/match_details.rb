@@ -9,7 +9,7 @@ class MatchDetails
   attr_accessor :match_format
 
   def total_balls
-    
+
     match_type = self.match_format.to_i
     case match_type
     when 1
