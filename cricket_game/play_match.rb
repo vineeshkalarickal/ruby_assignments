@@ -36,20 +36,20 @@ class PlayMatch < TeamDetails
         self.show_over_details(balls)
         # checking the conditions
         if [5, 7, 8, 9].include? ball
-          puts a +' on strike: Hits No Run '
+          puts "#{a} on strike: Hits No Run "
           flag = 1
         elsif ball.zero?
           puts "#{a} gets out by #{$OUT.shuffle.first}"
           wickets += 1
           batting_team.delete(a)
           players = batting_team[0..1]
-          unless batting_team.count != 1 ||  batting_team == []
+          unless batting_team.count != 1 || batting_team == []
             puts "|----+ #{team} All out!!, Total runs scored #{@total}  +----| "
             # Abort if no players left
-            self.final_scorecard(@total, over, bowling, innings)
+            final_scorecard(@total, over, bowling, innings)
             return @total
           end
-          puts "|----+ Remaining players #{players}  +----| " if players &.any?
+          puts "|----+ Remaining players #{players}  +----| " if players&.any?
         else
           puts "#{a}  on strike: Hits #{ball} runs"
           if [2, 4, 6].include? ball
@@ -60,14 +60,14 @@ class PlayMatch < TeamDetails
         end
         balls += 1
         if (balls % 6).zero?
-          over += 1          
-          self.show_scorecard(@total, over, wickets)
+          over += 1
+          show_scorecard(@total, over, wickets)
           @runs_in_over = 0
           sleep 1
           flag = 0
         end
         if balls == total_balls
-          self.final_scorecard(@total, over, bowling, innings)
+          final_scorecard(@total, over, bowling, innings)
           return @total
         end
       end

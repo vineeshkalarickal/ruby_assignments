@@ -1,13 +1,13 @@
 $COIN = ['Heads','Tails']
 $OUT = ['Bowled','Run out', 'Stumping', 'Catch out']
 # TEST
-$TEST_OVERS = 5
+$TEST_OVERS = 10
 
 # ODI
-$ODI_OVERS = 2
+$ODI_OVERS = 8
 
 # T20
-$T20_OVERS = 2
+$T20_OVERS = 5
 
 # TOTAL_PLAYERS in each team
 $TOTAL_PLAYERS = 3

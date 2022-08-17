@@ -11,13 +11,13 @@ class Index
     td = TeamDetails.new
     play = PlayMatch.new
     # add team
-    td.add_team
-    td.add_players('first')
-    td.add_players('second')
+    # td.add_team
+    # td.add_players('first')
+    # td.add_players('second')
     td.show_team
     td.show_match_details(@match_format)
     # call for the toss
-    coin_toss = Coin_Toss.new
+    coin_toss = CoinToss.new
     batting = coin_toss.call
     bowling = coin_toss.get_bowling_team(batting)
 
