@@ -7,7 +7,8 @@ class PlayMatch < TeamDetails
 
   include ScoreCard
 
-  def match(team, bowling, innings)
+  def match(team, bowling, innings, first_innings_score = nil)
+
     md = MatchDetails.new $MATCH_FORMAT
     score_runs = (0..9).to_a
     @total = 0
@@ -15,6 +16,7 @@ class PlayMatch < TeamDetails
     balls = 0
     over = 0
     wickets = 0
+    match_over = false
 
     puts ' |--------------------------| '
     puts " |----+ Innings #{innings} Starts +----| "
@@ -66,7 +68,12 @@ class PlayMatch < TeamDetails
           sleep 1
           flag = 0
         end
-        if balls == total_balls
+        if innings == 2
+          match_over = self.checkResult(@total, first_innings_score)
+          self.setWickets(wickets)
+        end
+
+        if balls == total_balls || match_over == true
           final_scorecard(@total, over, bowling, innings)
           return @total
         end

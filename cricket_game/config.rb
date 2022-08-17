@@ -10,7 +10,7 @@ $ODI_OVERS = 8
 $T20_OVERS = 5
 
 # TOTAL_PLAYERS in each team
-$TOTAL_PLAYERS = 3
+$TOTAL_PLAYERS = 11
 
 # start_details
 module GetTeamDetails

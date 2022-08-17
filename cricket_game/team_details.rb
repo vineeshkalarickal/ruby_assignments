@@ -65,7 +65,6 @@ class TeamDetails < MatchDetails
   end
 
   def show_team
-
     @teams = self.get_team_details
     @first_team = self.get_playing_eleven('first')
     @second_team = self.get_playing_eleven('second')
@@ -79,7 +78,6 @@ class TeamDetails < MatchDetails
   end
 
   def select_batting_team(team, innings)
-
     @teams = self.get_team_details
     @first_team = self.get_playing_eleven('first')
     @second_team = self.get_playing_eleven('second')

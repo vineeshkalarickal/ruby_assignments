@@ -27,16 +27,35 @@ class MatchDetails
     puts match_format
   end
 
+  def checkResult(current_run, first_innings_score)
+    if current_run >= first_innings_score
+      return true
+    end
+  end
+
+  def setWickets(wickets)
+    @wickets = wickets
+  end
+
+  def getWickets
+    @wickets
+  end
+
   def final_verdict(score_details)
     first_innings = score_details['first_innings']
     second_innings = score_details['second_innings']
     batting = score_details['batting']
     bowling = score_details['bowling']
+    wickets = score_details['wickets']
 
-    if first_innings > second_innings
-      puts "Team #{batting} won the match by #{first_innings - second_innings} runs"
+    puts "\n\n #{bowling} chased #{first_innings} runs and scored #{second_innings} "
+
+    if first_innings > second_innings      
+      puts "\n\n Result: #{batting} won the match by #{first_innings - second_innings} runs"
+    elsif first_innings < second_innings
+      puts "\n\n Result: #{bowling} won the match by #{($TOTAL_PLAYERS-1) - wickets} wickets"
     else
-      puts "Team #{bowling} won the match by #{second_innings - first_innings} runs"
+      puts 'Match Tied'
     end
   end
 end

@@ -11,9 +11,9 @@ class Index
     td = TeamDetails.new
     play = PlayMatch.new
     # add team
-    td.add_team
-    td.add_players('first')
-    td.add_players('second')
+    # td.add_team
+    # td.add_players('first')
+    # td.add_players('second')
     td.show_team
     td.show_match_details(@match_format)
     # call for the toss
@@ -24,13 +24,14 @@ class Index
     # play 1
     first_innings = play.match(batting, bowling, 1).to_i
     # play 2
-    second_innings = play.match(bowling, batting, 2).to_i
-
+    second_innings = play.match(bowling, batting, 2, first_innings).to_i
+    wickets = play.getWickets
     score_details = {
       'first_innings' => first_innings,
       'second_innings' => second_innings,
       'batting' => batting,
-      'bowling' => bowling
+      'bowling' => bowling,
+      'wickets' => wickets
     }
 
     if @match_format == 1
